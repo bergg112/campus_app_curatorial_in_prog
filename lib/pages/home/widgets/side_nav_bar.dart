@@ -59,6 +59,14 @@ class _SideNavBarState extends State<SideNavBar> {
             onTap: () => widget.onSelectedPage(PageItem.mensa),
             isActive: widget.currentPage == PageItem.mensa,
           ),
+          // Curatorial
+          SideNavBarItem(
+            title: 'Curatorial',
+            imagePathActive: 'assets/img/icons/curatorial-filled.png',
+            imagePathInactive: 'assets/img/icons/curatorial-outlined.png',
+            onTap: () => widget.onSelectedPage(PageItem.curatorial),
+            isActive: widget.currentPage == PageItem.curatorial,
+          ),
           SideNavBarItem(
             title: 'Karte',
             imagePathActive: 'assets/img/icons/mensa-filled.png',
