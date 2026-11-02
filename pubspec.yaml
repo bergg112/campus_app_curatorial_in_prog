@@ -149,6 +149,8 @@ flutter:
     - assets/img/icons/vote.svg
     - assets/img/icons/error.svg
     - assets/img/icons/more.png
+    - assets/img/icons/curatorial-outlined.png
+    - assets/img/icons/curatorial-filled.png
     - assets/img/icons/settings.svg
     - assets/img/icons/info.svg
     - assets/img/icons/instagram.svg
