@@ -48,6 +48,8 @@
 	<true/>
 	<key>NFCReaderUsageDescription</key>
 	<string>Allows the app to scan Mensa cards</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Die Campus App benötigt die Kamera, um Fotos für Curatorial aufzunehmen.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>The Campus App requires access to your photo library to retrieve your ticket</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
