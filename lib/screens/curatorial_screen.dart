@@ -215,28 +215,32 @@ class _CuratorialScreenState extends State<CuratorialScreen> {
               children: [
                 Expanded(
                   child: _Pill(
-                      label: 'Heute',
-                      selected: _today,
-                      onTap: () {
-                        if (_today) return;
+                    label: 'Heute',
+                    selected: _today,
+                    onTap: () {
+                      if (!_today) {
                         setState(() {
                           _today = true;
-                          _reload();
+                          _future = _load();
                         });
-                      }),
+                      }
+                    },
+                  ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: _Pill(
-                      label: 'Diese Woche',
-                      selected: !_today,
-                      onTap: () {
-                        if (!_today) return;
+                    label: 'Diese Woche',
+                    selected: !_today,
+                    onTap: () {
+                      if (_today) {
                         setState(() {
                           _today = false;
-                          _reload();
+                          _future = _load();
                         });
-                      }),
+                      }
+                    },
+                  ),
                 ),
               ],
             ),
