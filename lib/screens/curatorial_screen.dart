@@ -297,12 +297,9 @@ class _PostCard extends StatelessWidget {
               child: Text(post.caption,
                   style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500)),
             ),
-          footer ??
-              const Padding(
-                padding: EdgeInsets.fromLTRB(4, 6, 4, 2),
-                child: const SizedBox.shrink(),
-              ),
-        ],
+            footer ?? const SizedBox.shrink(),
+          ],
+        ),
       ),
     );
   }
