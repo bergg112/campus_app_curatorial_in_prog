@@ -124,8 +124,15 @@ class _CuratorialScreenState extends State<CuratorialScreen> {
   Future<List<_Post>> _load() {
     final now = DateTime.now();
     final startOfToday = DateTime(now.year, now.month, now.day);
-    return _Api.feed(since: _today ? startOfToday : startOfToday.subtract(const Duration(days: 6)));
+
+    if (_today) {
+      return _Api.feed(since: startOfToday);
+    } else {
+      final startOfWeek = startOfToday.subtract(Duration(days: now.weekday - 1));
+      return _Api.feed(since: startOfWeek);
+    }
   }
+
 
   void _reload() => setState(() => _future = _load());
 
