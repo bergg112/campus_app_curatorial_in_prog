@@ -494,7 +494,13 @@ class _ReviewScreenState extends State<ReviewScreen> {
     }
   }
 
-  void _reload() => setState(() => _future = _load());
+  // Güvenli reload: setState içinde asenkron işlem yapılmıyor
+  void _reload() {
+    if (!mounted) return;
+    setState(() {
+      _future = _load();
+    });
+  }
 
   Future<void> _moderate(_Post p, String action) async {
     try {
@@ -531,6 +537,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                         label: data != null ? 'Offen ${data.openCount}' : 'Offen',
                         selected: _open,
                         onTap: () {
+                          if (_open) return; // Zaten açıksa tekrar yükleme
                           _open = true;
                           _reload();
                         },
@@ -542,6 +549,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                         label: 'Erledigt',
                         selected: !_open,
                         onTap: () {
+                          if (!_open) return; // Zaten kapalıysa tekrar yükleme
                           _open = false;
                           _reload();
                         },
@@ -570,7 +578,6 @@ class _ReviewScreenState extends State<ReviewScreen> {
                                     final pending = p.status == 'pending';
                                     return _PostCard(
                                       post: p,
-                                      // Offene Bilder sind nur mit Admin-Passwort abrufbar.
                                       headers: pending ? _headers : null,
                                       footer: Padding(
                                         padding: const EdgeInsets.only(top: 10),
@@ -578,16 +585,20 @@ class _ReviewScreenState extends State<ReviewScreen> {
                                             ? Row(
                                                 children: [
                                                   Expanded(
-                                                      child: _ActionButton(
-                                                          label: 'Ablehnen',
-                                                          color: _kCardLight,
-                                                          onTap: () => _moderate(p, 'reject'))),
+                                                    child: _ActionButton(
+                                                      label: 'Ablehnen',
+                                                      color: _kCardLight,
+                                                      onTap: () => _moderate(p, 'reject'),
+                                                    ),
+                                                  ),
                                                   const SizedBox(width: 10),
                                                   Expanded(
-                                                      child: _ActionButton(
-                                                          label: 'Freigeben',
-                                                          color: _kAccent,
-                                                          onTap: () => _moderate(p, 'approve'))),
+                                                    child: _ActionButton(
+                                                      label: 'Freigeben',
+                                                      color: _kAccent,
+                                                      onTap: () => _moderate(p, 'approve'),
+                                                    ),
+                                                  ),
                                                 ],
                                               )
                                             : Text(
