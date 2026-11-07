@@ -211,8 +211,11 @@ class _CuratorialScreenState extends State<CuratorialScreen> {
                       label: 'Heute',
                       selected: _today,
                       onTap: () {
-                        _today = true;
-                        _reload();
+                        if (_today) return;
+                        setState(() {
+                          _today = true;
+                          _reload();
+                        });
                       }),
                 ),
                 const SizedBox(width: 12),
@@ -221,8 +224,11 @@ class _CuratorialScreenState extends State<CuratorialScreen> {
                       label: 'Diese Woche',
                       selected: !_today,
                       onTap: () {
-                        _today = false;
-                        _reload();
+                        if (!_today) return;
+                        setState(() {
+                          _today = false;
+                          _reload();
+                        });
                       }),
                 ),
               ],
@@ -297,8 +303,7 @@ class _PostCard extends StatelessWidget {
               child: Text(post.caption,
                   style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500)),
             ),
-            footer ?? const SizedBox.shrink(),
-              ),
+          footer ?? const SizedBox.shrink(),
         ],
       ),
     );
