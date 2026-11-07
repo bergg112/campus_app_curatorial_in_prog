@@ -98,7 +98,7 @@ class _Api {
 }
 
 // ---------------------------------------------------------------------------
-// 1) FEED  (Mockup Screen 4)
+// 1) FEED
 // ---------------------------------------------------------------------------
 
 class CuratorialScreen extends StatefulWidget {
@@ -112,7 +112,7 @@ class _CuratorialScreenState extends State<CuratorialScreen> {
   bool _today = true;
   late Future<List<_Post>> _future;
 
-  /// Admin-Passwort, nur im Arbeitsspeicher (wird nirgends gespeichert).
+  /// Admin-Passwort
   String? _adminPassword;
 
   @override
@@ -300,7 +300,7 @@ class _PostCard extends StatelessWidget {
           footer ??
               const Padding(
                 padding: EdgeInsets.fromLTRB(4, 6, 4, 2),
-                child: Text('Anonym eingereicht', style: TextStyle(color: _kMuted, fontSize: 12)),
+                child: const SizedBox.shrink(),
               ),
         ],
       ),
@@ -309,7 +309,7 @@ class _PostCard extends StatelessWidget {
 }
 
 // ---------------------------------------------------------------------------
-// 2) EINREICHEN  (Mockup Screens 1 + 2)
+// 2) EINREICHEN
 // ---------------------------------------------------------------------------
 
 class SubmitPhotoScreen extends StatefulWidget {
@@ -462,7 +462,7 @@ class _SubmitPhotoScreenState extends State<SubmitPhotoScreen> {
 }
 
 // ---------------------------------------------------------------------------
-// 3) PRÜFUNG  (Mockup Screen 3)
+// 3) PRÜFUNG
 // ---------------------------------------------------------------------------
 
 class ReviewScreen extends StatefulWidget {
