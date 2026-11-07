@@ -15,7 +15,7 @@ import 'package:uuid/uuid.dart';
 
 /// Adresse deines Cloudflare Workers (ohne "/" am Ende).
 /// TODO: nach dem Deploy hier eintragen.
-const String kCuratorialApi = 'https://curatorial-upload.DEIN-NAME.workers.dev';
+const String kCuratorialApi = 'https://curatorial-upload.berg-thoos.workers.dev';
 
 const _kAccent = Color(0xFF3B82F6);
 const _kBg = Color(0xFF0E1420);
