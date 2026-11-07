@@ -494,7 +494,6 @@ class _ReviewScreenState extends State<ReviewScreen> {
     }
   }
 
-  // Güvenli reload: setState içinde asenkron işlem yapılmıyor
   void _reload() {
     if (!mounted) return;
     setState(() {
@@ -537,7 +536,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                         label: data != null ? 'Offen ${data.openCount}' : 'Offen',
                         selected: _open,
                         onTap: () {
-                          if (_open) return; // Zaten açıksa tekrar yükleme
+                          if (_open) return;
                           _open = true;
                           _reload();
                         },
@@ -549,7 +548,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                         label: 'Erledigt',
                         selected: !_open,
                         onTap: () {
-                          if (!_open) return; // Zaten kapalıysa tekrar yükleme
+                          if (!_open) return;
                           _open = false;
                           _reload();
                         },
@@ -601,11 +600,26 @@ class _ReviewScreenState extends State<ReviewScreen> {
                                                   ),
                                                 ],
                                               )
-                                            : Text(
-                                                p.status == 'approved' ? 'Freigegeben' : 'Abgelehnt',
-                                                style: TextStyle(
-                                                    color: p.status == 'approved' ? Colors.greenAccent : Colors.redAccent,
-                                                    fontSize: 13),
+                                            : Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    p.status == 'approved' ? 'Freigegeben' : 'Abgelehnt',
+                                                    style: TextStyle(
+                                                      color: p.status == 'approved' ? Colors.greenAccent : Colors.redAccent,
+                                                      fontSize: 14,
+                                                      fontWeight: FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                  // Onaylanmış veya reddedilmiş resimleri sonradan silme butonu
+                                                  if (p.status == 'approved')
+                                                    TextButton.icon(
+                                                      style: TextButton.styleFrom(foregroundColor: Colors.redAccent),
+                                                      onPressed: () => _moderate(p, 'reject'),
+                                                      icon: const Icon(Icons.delete_outline, size: 18),
+                                                      label: const Text('Löschen'),
+                                                    ),
+                                                ],
                                               ),
                                       ),
                                     );
