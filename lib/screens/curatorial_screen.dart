@@ -230,7 +230,7 @@ class _CuratorialScreenState extends State<CuratorialScreen> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: _Pill(
-                    label: 'Diese Woche',
+                    label: 'In letzter Zeit',
                     selected: !_today,
                     onTap: () {
                       if (_today) {
